@@ -1,0 +1,10 @@
+|lab_4
+CLK <= inst11.DB_MAX_OUTPUT_PORT_TYPE
+A7 => inst12.IN0
+A6 => inst12.IN1
+/CS2 => inst12.IN2
+/WE => inst11.IN1
+TRIEN <= inst9.DB_MAX_OUTPUT_PORT_TYPE
+/RE => inst9.IN1
+
+

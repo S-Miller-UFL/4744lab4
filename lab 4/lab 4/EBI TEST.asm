@@ -1,9 +1,8 @@
 ;*******************************************
-;Lab 4, Section 2
 ;Name: Steven Miller
 ;Class #: 11318
 ;PI Name: Anthony Stross
-;Description: Writes switch values from the external switches to the external LED's
+;Description: retrieves values from the EBI data bus and outputs them to the backpack leds
 ;*******************************************
 ;***************INCLUDES*************************************
 .include "ATxmega128a1udef.inc"
@@ -29,21 +28,31 @@
 .ORG 0X0200
 MAIN:
 	RCALL EBI_INIT
+	;INIT BACKPACK IO (TOO LAZY FOR SUBROUTINE)
+	LDI R16, 0XFF
+	STS PORTC_DIRSET, R16
+	LDI R16, 0X00
+	STS PORTC_OUT, R16
 	;LOAD IO ADDRESS
 	LDI XL, BYTE1(IO_START_ADDRESS)
 	LDI XH, BYTE2(IO_START_ADDRESS)
-	LDI R16, BYTE3(IO_START)
-	OUT CPU_RAMPX, R16
-	MOV R16, XL
+	LDI R16, BYTE3(IO_START_ADDRESS)
+	sts CPU_RAMPX, R16
+	;LOAD SRAM ADDRESS
+	LDI YL, BYTE1(SRAM_START_ADDRESS)
+	LDI YH, BYTE2(SRAM_START_ADDRESS)
+	LDI R16, BYTE3(SRAM_START_ADDRESS)
+	OUT CPU_RAMPY, R16
+	ldi r16, byte1(io_start_address)
 	STS PORTK_OUT, R16
 	;SET RE AND WE TO TRUE
 	LDI R16, 0B00000011
 	STS PORTH_OUTCLR, R16
-	;LOAD TOGGLE BIT
-	LDI R16, 0B00000001
 	LOOP:
-	;TOGGLE WE ON AND OFF
-		STS PORTH_OUTTGL, R16
+	;GET DATA FROM DATA BUS
+	ld r16, x
+	STS PORTC_OUT, R16
+	st x, r16
 	RJMP LOOP
 END:
 RJMP END
@@ -70,6 +79,8 @@ EBI_INIT:
 	;SET ADDRESS SIGNALS TO OUTPUT
 	LDI R16,0XFF
 	STS PORTK_DIRSET, R16
+	;SET DATA BUS TO INPUT
+	;STS PORTJ_DIRCLR, R16
 	;SET EBI TYPE TO 3 PORT SRAM ALE1
 	LDI R16, 0B00000001
 	STS EBI_CTRL, R16

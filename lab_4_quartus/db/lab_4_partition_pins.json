@@ -1,0 +1,37 @@
+{
+	"partitions" : [
+		{
+			"name" : "Top",
+			"pins" : [
+				{
+					"name" : "CLK",
+					"strict" : false
+				},
+				{
+					"name" : "TRIEN",
+					"strict" : false
+				},
+				{
+					"name" : "/WE",
+					"strict" : false
+				},
+				{
+					"name" : "A7",
+					"strict" : false
+				},
+				{
+					"name" : "A6",
+					"strict" : false
+				},
+				{
+					"name" : "/CS2",
+					"strict" : false
+				},
+				{
+					"name" : "/RE",
+					"strict" : false
+				}
+			]
+		}
+	]
+}
