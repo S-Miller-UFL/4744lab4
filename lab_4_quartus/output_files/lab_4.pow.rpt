@@ -1,5 +1,5 @@
 Power Analyzer report for lab_4
-Fri Jun 16 16:58:43 2023
+Sat Jun 17 15:09:05 2023
 Quartus Prime Version 19.1.0 Build 670 09/22/2019 SJ Lite Edition
 
 
@@ -64,14 +64,14 @@ https://fpgasoftware.intel.com/eula.
 +-------------------------------------------------------------------------------------------+
 ; Power Analyzer Summary                                                                    ;
 +----------------------------------------+--------------------------------------------------+
-; Power Analyzer Status                  ; Successful - Fri Jun 16 16:58:43 2023            ;
+; Power Analyzer Status                  ; Successful - Sat Jun 17 15:09:05 2023            ;
 ; Quartus Prime Version                  ; 19.1.0 Build 670 09/22/2019 SJ Lite Edition      ;
 ; Revision Name                          ; lab_4                                            ;
 ; Top-level Entity Name                  ; lab_4                                            ;
 ; Family                                 ; MAX 10                                           ;
 ; Device                                 ; 10M02SCU169C8G                                   ;
 ; Power Models                           ; Final                                            ;
-; Total Thermal Power Dissipation        ; 72.24 mW                                         ;
+; Total Thermal Power Dissipation        ; 72.23 mW                                         ;
 ; Core Dynamic Thermal Power Dissipation ; 0.00 mW                                          ;
 ; Core Static Thermal Power Dissipation  ; 66.77 mW                                         ;
 ; I/O Thermal Power Dissipation          ; 5.47 mW                                          ;
@@ -109,9 +109,9 @@ https://fpgasoftware.intel.com/eula.
 ; Node ; Reason                      ;
 +------+-----------------------------+
 ; /WE  ; No valid clock domain found ;
+; /CS2 ; No valid clock domain found ;
 ; A7   ; No valid clock domain found ;
 ; A6   ; No valid clock domain found ;
-; /CS2 ; No valid clock domain found ;
 ; /RE  ; No valid clock domain found ;
 +------+-----------------------------+
 
@@ -250,7 +250,7 @@ https://fpgasoftware.intel.com/eula.
 Info: *******************************************************************
 Info: Running Quartus Prime Power Analyzer
     Info: Version 19.1.0 Build 670 09/22/2019 SJ Lite Edition
-    Info: Processing started: Fri Jun 16 16:58:42 2023
+    Info: Processing started: Sat Jun 17 15:09:03 2023
 Info: Command: quartus_pow --read_settings_files=off --write_settings_files=off lab_4 -c lab_4
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (21077): Low junction temperature is 0 degrees C
@@ -265,11 +265,11 @@ Warning (215044): No board thermal model was selected.  Analyzing without board 
 Info (334003): Started post-fitting delay annotation
 Info (334004): Delay annotation completed successfully
 Info (215049): Average toggle rate for this design is 0.000 millions of transitions / sec
-Info (215031): Total thermal power estimate for the design is 72.24 mW
+Info (215031): Total thermal power estimate for the design is 72.23 mW
 Info: Quartus Prime Power Analyzer was successful. 0 errors, 5 warnings
     Info: Peak virtual memory: 4871 megabytes
-    Info: Processing ended: Fri Jun 16 16:58:43 2023
-    Info: Elapsed time: 00:00:01
-    Info: Total CPU time (on all processors): 00:00:01
+    Info: Processing ended: Sat Jun 17 15:09:05 2023
+    Info: Elapsed time: 00:00:02
+    Info: Total CPU time (on all processors): 00:00:00
 
 

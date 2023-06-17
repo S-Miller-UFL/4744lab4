@@ -16,15 +16,15 @@
 					"strict" : false
 				},
 				{
+					"name" : "/CS2",
+					"strict" : false
+				},
+				{
 					"name" : "A7",
 					"strict" : false
 				},
 				{
 					"name" : "A6",
-					"strict" : false
-				},
-				{
-					"name" : "/CS2",
 					"strict" : false
 				},
 				{

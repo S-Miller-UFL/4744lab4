@@ -15,7 +15,7 @@
     <Name>lab 4</Name>
     <RootNamespace>lab 4</RootNamespace>
     <ToolchainFlavour>Native</ToolchainFlavour>
-    <EntryFile>$(MSBuildProjectDirectory)\EBI TEST.asm</EntryFile>
+    <EntryFile>$(MSBuildProjectDirectory)\lab4_3b.asm</EntryFile>
     <KeepTimersRunning>true</KeepTimersRunning>
     <OverrideVtor>false</OverrideVtor>
     <CacheFlash>true</CacheFlash>
@@ -71,10 +71,16 @@
     </ToolchainSettings>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="EBI TEST.asm">
+    <Compile Include="lab4_2.asm">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="lab4_2.asm">
+    <Compile Include="lab4_3a.asm">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="lab4_3b.asm">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="sram_data.asm">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>

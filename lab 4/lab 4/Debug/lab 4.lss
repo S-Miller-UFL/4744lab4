@@ -1,10 +1,10 @@
 
-AVRASM ver. 2.2.8  C:\Users\steve\git repos\school\EEL4744\lab 4\lab 4\lab 4\EBI TEST.asm Fri Jun 16 21:50:08 2023
+AVRASM ver. 2.2.8  C:\Users\steve\git repos\school\EEL4744\lab 4\lab 4\lab 4\lab4_3b.asm Sat Jun 17 14:48:26 2023
 
 [builtin](2): Including file 'C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\XMEGAA_DFP\1.3.146\avrasm\inc\ATxmega128A1Udef.inc'
-C:\Users\steve\git repos\school\EEL4744\lab 4\lab 4\lab 4\EBI TEST.asm(8): Including file 'C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\XMEGAA_DFP\1.3.146\avrasm\inc\ATxmega128a1udef.inc'
+C:\Users\steve\git repos\school\EEL4744\lab 4\lab 4\lab 4\lab4_3b.asm(9): Including file 'C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\XMEGAA_DFP\1.3.146\avrasm\inc\ATxmega128a1udef.inc'
 [builtin](2): Including file 'C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\XMEGAA_DFP\1.3.146\avrasm\inc\ATxmega128A1Udef.inc'
-C:\Users\steve\git repos\school\EEL4744\lab 4\lab 4\lab 4\EBI TEST.asm(8): Including file 'C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\XMEGAA_DFP\1.3.146\avrasm\inc\ATxmega128a1udef.inc'
+C:\Users\steve\git repos\school\EEL4744\lab 4\lab 4\lab 4\lab4_3b.asm(9): Including file 'C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\XMEGAA_DFP\1.3.146\avrasm\inc\ATxmega128a1udef.inc'
                                  
                                  ;*******************************************
                                  
@@ -6715,10 +6715,11 @@ C:\Users\steve\git repos\school\EEL4744\lab 4\lab 4\lab 4\EBI TEST.asm(8): Inclu
                                  
                                  
                                  
+                                 ;Lab 4, Section 3b
                                  ;Name: Steven Miller
                                  ;Class #: 11318
                                  ;PI Name: Anthony Stross
-                                 ;Description: retrieves values from the EBI data bus and outputs them to the backpack leds
+                                 ;Description: Writes switch values from the external switches to the external LED's
                                  ;*******************************************
                                  ;***************INCLUDES*************************************
                                  .include "ATxmega128a1udef.inc"
@@ -6754,10 +6755,14 @@ C:\Users\steve\git repos\school\EEL4744\lab 4\lab 4\lab 4\EBI TEST.asm(8): Inclu
                                  ;***************END OF INCLUDES******************************
                                  
                                  ;*********************************EQUATES********************************
+                                 .EQU STACKEND = 0x3fff ;top of stack
+                                 .EQU STACKBEGIN = 0x2000 ;bottom of stack
                                  .EQU INPUT = 0B00000000
                                  .EQU OUTPUT = 0B11111111
                                  .EQU IO_START_ADDRESS = 0X224000
                                  .EQU SRAM_START_ADDRESS = 0X128000
+                                 .EQU READ_LOCATION = 0X128000
+                                 .EQU WRITE_LOCATION = 0X128100
                                  ;*******************************END OF EQUATES*******************************
                                  
                                  ;*********************************DEFS********************************
@@ -6772,35 +6777,37 @@ C:\Users\steve\git repos\school\EEL4744\lab 4\lab 4\lab 4\EBI TEST.asm(8): Inclu
 000000 c1ff                      	RJMP MAIN
                                  .ORG 0X0200
                                  MAIN:
-000200 d01b                      	RCALL EBI_INIT
-                                 	;INIT BACKPACK IO (TOO LAZY FOR SUBROUTINE)
-000201 ef0f                      	LDI R16, 0XFF
-000202 9300 0641                 	STS PORTC_DIRSET, R16
-000204 e000                      	LDI R16, 0X00
-000205 9300 0644                 	STS PORTC_OUT, R16
-                                 	;LOAD IO ADDRESS
-000207 e0a0                      	LDI XL, BYTE1(IO_START_ADDRESS)
-000208 e4b0                      	LDI XH, BYTE2(IO_START_ADDRESS)
-000209 e202                      	LDI R16, BYTE3(IO_START_ADDRESS)
-00020a 9300 0039                 	sts CPU_RAMPX, R16
-                                 	;LOAD SRAM ADDRESS
-00020c e0c0                      	LDI YL, BYTE1(SRAM_START_ADDRESS)
-00020d e8d0                      	LDI YH, BYTE2(SRAM_START_ADDRESS)
-00020e e102                      	LDI R16, BYTE3(SRAM_START_ADDRESS)
-00020f bf0a                      	OUT CPU_RAMPY, R16
-000210 e000                      	ldi r16, byte1(io_start_address)
-000211 9300 0724                 	STS PORTK_OUT, R16
-                                 	;SET RE AND WE TO TRUE
-000213 e003                      	LDI R16, 0B00000011
-000214 9300 06e6                 	STS PORTH_OUTCLR, R16
+                                 	;INITIALIZE STACK POINTER
+000200 e000                      	LDI R16, LOW(STACKBEGIN)
+000201 bf0d                      	out CPU_SPL, R16
+000202 e30f                      	LDI R16, HIGH(STACKEND)
+000203 bf0e                      	OUT CPU_SPH, R16
+000204 d011                      	RCALL EBI_INIT
+                                 	;LOAD SRAM ADDRESS INTO Y
+000205 e0c0                      	LDI YL, BYTE1(SRAM_START_ADDRESS)
+000206 e8d0                      	LDI YH, BYTE2(SRAM_START_ADDRESS)
+000207 e102                      	LDI R16, BYTE3(SRAM_START_ADDRESS)
+000208 bf0a                      	OUT CPU_RAMPY, R16
+                                 	;LOAD WRITE ADDRESS INTO Z
+000209 e0e0                      	LDI ZL, BYTE1(WRITE_LOCATION )
+00020a e8f1                      	LDI ZH, BYTE2(WRITE_LOCATION )
+00020b e102                      	LDI R16, BYTE3(WRITE_LOCATION )
+00020c bf0b                      	OUT CPU_RAMPZ, R16
+                                 	;INITIALIZE SRAM ADDRESSES
+00020d e00e                      	LDI R16, 0XE
+00020e 8308                      	ST Y,R16
+00020f e00f                      	LDI R16, 0XF
+000210 8300                      	ST Z,R16
                                  	LOOP:
-                                 	;GET DATA FROM DATA BUS
-000216 910c                      	ld r16, x
-000217 9300 0644                 	STS PORTC_OUT, R16
-000219 930c                      	st x, r16
-00021a cffb                      	RJMP LOOP
+                                 	;READ FROM SRAM READ ADDRESS
+000211 8108                      	LD R16,Y
+                                 	;LOAD R16 WITH 0XF
+000212 e00f                      	LDI R16, 0XF
+                                 	;WRITE TO SRAM WRITE ADDRESS
+000213 8300                      	ST Z, r16
+000214 cffc                      	RJMP LOOP
                                  END:
-00021b cfff                      RJMP END
+000215 cfff                      RJMP END
                                  ;*****************SUBROUTINES*************************
                                  
                                  ;******************************************
@@ -6812,40 +6819,38 @@ C:\Users\steve\git repos\school\EEL4744\lab 4\lab 4\lab 4\EBI TEST.asm(8): Inclu
                                  ;******************************************
                                  EBI_INIT:
                                  	;SAVE RELATIVE REGISTERS
-00021c 930f                      	PUSH R16
+000216 930f                      	PUSH R16
                                  	;INIITIALIZE EBI CONTROL SIGNALS
-00021d e503                      	LDI R16,0B01010011
-00021e 9300 06e5                 	STS PORTH_OUTSET, R16
-000220 e004                      	LDI R16,0B00000100
-000221 9300 06e6                 	STS PORTH_OUTCLR, R16
+000217 e503                      	LDI R16,0B01010011
+000218 9300 06e5                 	STS PORTH_OUTSET, R16
+00021a e004                      	LDI R16,0B00000100
+00021b 9300 06e6                 	STS PORTH_OUTCLR, R16
                                  	;SET EBI CONTROL SIGNALS TO OUTPUT
-000223 e507                      	LDI R16, 0B01010111
-000224 9300 06e1                 	STS PORTH_DIRSET, R16
+00021d e507                      	LDI R16, 0B01010111
+00021e 9300 06e1                 	STS PORTH_DIRSET, R16
                                  	;SET ADDRESS SIGNALS TO OUTPUT
-000226 ef0f                      	LDI R16,0XFF
-000227 9300 0721                 	STS PORTK_DIRSET, R16
-                                 	;SET DATA BUS TO INPUT
-                                 	;STS PORTJ_DIRCLR, R16
+000220 ef0f                      	LDI R16,0XFF
+000221 9300 0721                 	STS PORTK_DIRSET, R16
                                  	;SET EBI TYPE TO 3 PORT SRAM ALE1
-000229 e001                      	LDI R16, 0B00000001
-00022a 9300 0440                 	STS EBI_CTRL, R16
+000223 e001                      	LDI R16, 0B00000001
+000224 9300 0440                 	STS EBI_CTRL, R16
                                  	;CONFIGURE CS0
-00022c e10d                      	LDI R16, 0B00011101
-00022d 9300 0450                 	STS EBI_CS0_CTRLA, R16
-00022f e800                      	LDI R16, BYTE2(SRAM_START_ADDRESS )
-000230 9300 0452                 	STS EBI_CS0_BASEADDR, R16
-000232 e102                      	LDI R16, BYTE3(SRAM_START_ADDRESS )
-000233 9300 0453                 	STS EBI_CS0_BASEADDR+1, R16
+000226 e10d                      	LDI R16, 0B00011101
+000227 9300 0450                 	STS EBI_CS0_CTRLA, R16
+000229 e800                      	LDI R16, BYTE2(SRAM_START_ADDRESS )
+00022a 9300 0452                 	STS EBI_CS0_BASEADDR, R16
+00022c e102                      	LDI R16, BYTE3(SRAM_START_ADDRESS )
+00022d 9300 0453                 	STS EBI_CS0_BASEADDR+1, R16
                                  	;CONFIGURE CS2
-000235 e001                      	LDI R16, 0B00000001
-000236 9300 0458                 	STS EBI_CS2_CTRLA, R16
-000238 e400                      	LDI R16, BYTE2(IO_START_ADDRESS)
-000239 9300 045a                 	STS EBI_CS2_BASEADDR,R16
-00023b e202                      	LDI R16, BYTE3(IO_START_ADDRESS)
-00023c 9300 045b                 	STS EBI_CS2_BASEADDR+1,R16
+00022f e001                      	LDI R16, 0B00000001
+000230 9300 0458                 	STS EBI_CS2_CTRLA, R16
+000232 e400                      	LDI R16, BYTE2(IO_START_ADDRESS)
+000233 9300 045a                 	STS EBI_CS2_BASEADDR,R16
+000235 e202                      	LDI R16, BYTE3(IO_START_ADDRESS)
+000236 9300 045b                 	STS EBI_CS2_BASEADDR+1,R16
                                  	;RESTORE REGISTERS
-00023e 910f                      	POP R16
-00023f 9508                      RET
+000238 910f                      	POP R16
+000239 9508                      RET
 
 
 RESOURCE USE INFORMATION
@@ -6863,12 +6868,12 @@ counted separately from r26..r31 here.
 .dseg memory usage only counts static data declared with .byte
 
 "ATxmega128A1U" register use summary:
-x  :   2 y  :   0 z  :   0 r0 :   0 r1 :   0 r2 :   0 r3 :   0 r4 :   0 
+x  :   0 y  :   2 z  :   2 r0 :   0 r1 :   0 r2 :   0 r3 :   0 r4 :   0 
 r5 :   0 r6 :   0 r7 :   0 r8 :   0 r9 :   0 r10:   0 r11:   0 r12:   0 
 r13:   0 r14:   0 r15:   0 r16:  39 r17:   0 r18:   0 r19:   0 r20:   0 
-r21:   0 r22:   0 r23:   0 r24:   0 r25:   0 r26:   1 r27:   1 r28:   1 
-r29:   1 r30:   0 r31:   0 
-Registers used: 6 out of 35 (17.1%)
+r21:   0 r22:   0 r23:   0 r24:   0 r25:   0 r26:   0 r27:   0 r28:   1 
+r29:   1 r30:   1 r31:   1 
+Registers used: 7 out of 35 (20.0%)
 
 "ATxmega128A1U" instruction use summary:
 .lds  :   0 .sts  :   0 adc   :   0 add   :   0 adiw  :   0 and   :   0 
@@ -6882,22 +6887,22 @@ clt   :   0 clv   :   0 clz   :   0 com   :   0 cp    :   0 cpc   :   0
 cpi   :   0 cpse  :   0 dec   :   0 des   :   0 eicall:   0 eijmp :   0 
 elpm  :   0 eor   :   0 fmul  :   0 fmuls :   0 fmulsu:   0 icall :   0 
 ijmp  :   0 in    :   0 inc   :   0 jmp   :   0 lac   :   0 las   :   0 
-lat   :   0 ld    :   1 ldd   :   0 ldi   :  21 lds   :   0 lpm   :   0 
+lat   :   0 ld    :   1 ldd   :   0 ldi   :  22 lds   :   0 lpm   :   0 
 lsl   :   0 lsr   :   0 mov   :   0 movw  :   0 mul   :   0 muls  :   0 
-mulsu :   0 neg   :   0 nop   :   0 or    :   0 ori   :   0 out   :   1 
+mulsu :   0 neg   :   0 nop   :   0 or    :   0 ori   :   0 out   :   4 
 pop   :   1 push  :   1 rcall :   1 ret   :   1 reti  :   0 rjmp  :   3 
 rol   :   0 ror   :   0 sbc   :   0 sbci  :   0 sbi   :   0 sbic  :   0 
 sbis  :   0 sbiw  :   0 sbr   :   0 sbrc  :   0 sbrs  :   0 sec   :   0 
 seh   :   0 sei   :   0 sen   :   0 ser   :   0 ses   :   0 set   :   0 
-sev   :   0 sez   :   0 sleep :   0 spm   :   0 st    :   1 std   :   0 
-sts   :  17 sub   :   0 subi  :   0 swap  :   0 tst   :   0 wdr   :   0 
+sev   :   0 sez   :   0 sleep :   0 spm   :   0 st    :   3 std   :   0 
+sts   :  11 sub   :   0 subi  :   0 swap  :   0 tst   :   0 wdr   :   0 
 xch   :   0 
 Instructions used: 10 out of 121 (8.3%)
 
 "ATxmega128A1U" memory use summary [bytes]:
 Segment   Begin    End      Code   Data   Used    Size   Use%
 ---------------------------------------------------------------
-[.cseg] 0x000000 0x000480    130      0    130  139264   0.1%
+[.cseg] 0x000000 0x000474    118      0    118  139264   0.1%
 [.dseg] 0x002000 0x002000      0      0      0    8192   0.0%
 [.eseg] 0x000000 0x000000      0      0      0    2048   0.0%
 

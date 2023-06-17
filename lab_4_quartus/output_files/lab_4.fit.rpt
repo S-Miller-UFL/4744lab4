@@ -1,5 +1,5 @@
 Fitter report for lab_4
-Fri Jun 16 16:58:39 2023
+Sat Jun 17 15:09:00 2023
 Quartus Prime Version 19.1.0 Build 670 09/22/2019 SJ Lite Edition
 
 
@@ -63,7 +63,7 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------------------------------------------------------------+
 ; Fitter Summary                                                                   ;
 +------------------------------------+---------------------------------------------+
-; Fitter Status                      ; Successful - Fri Jun 16 16:58:39 2023       ;
+; Fitter Status                      ; Successful - Sat Jun 17 15:09:00 2023       ;
 ; Quartus Prime Version              ; 19.1.0 Build 670 09/22/2019 SJ Lite Edition ;
 ; Revision Name                      ; lab_4                                       ;
 ; Top-level Entity Name              ; lab_4                                       ;
@@ -196,7 +196,7 @@ https://fpgasoftware.intel.com/eula.
 +--------------+
 ; Pin-Out File ;
 +--------------+
-The pin-out file can be found in C:/Users/steve/git repos/school/EEL4744/lab 4/output_files/lab_4.pin.
+The pin-out file can be found in C:/Users/steve/git repos/school/EEL4744/lab 4/lab_4_quartus/output_files/lab_4.pin.
 
 
 +-------------------------------------------------------------------+
@@ -561,9 +561,9 @@ Note: Pin directions (input, output or bidir) are based on device operating in u
 ; CLK      ; Incomplete set of assignments ;
 ; TRIEN    ; Incomplete set of assignments ;
 ; /WE      ; Incomplete set of assignments ;
+; /CS2     ; Incomplete set of assignments ;
 ; A7       ; Incomplete set of assignments ;
 ; A6       ; Incomplete set of assignments ;
-; /CS2     ; Incomplete set of assignments ;
 ; /RE      ; Incomplete set of assignments ;
 +----------+-------------------------------+
 
@@ -586,9 +586,9 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; CLK   ; Output   ; --            ; --            ; --                    ; --  ; --   ;
 ; TRIEN ; Output   ; --            ; --            ; --                    ; --  ; --   ;
 ; /WE   ; Input    ; (6) 873 ps    ; --            ; --                    ; --  ; --   ;
+; /CS2  ; Input    ; (6) 873 ps    ; --            ; --                    ; --  ; --   ;
 ; A7    ; Input    ; (6) 868 ps    ; --            ; --                    ; --  ; --   ;
 ; A6    ; Input    ; (6) 873 ps    ; --            ; --                    ; --  ; --   ;
-; /CS2  ; Input    ; (6) 873 ps    ; --            ; --                    ; --  ; --   ;
 ; /RE   ; Input    ; (6) 873 ps    ; --            ; --                    ; --  ; --   ;
 +-------+----------+---------------+---------------+-----------------------+-----+------+
 
@@ -600,13 +600,13 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +---------------------+-------------------+---------+
 ; /WE                 ;                   ;         ;
 ;      - inst11       ; 0                 ; 6       ;
+; /CS2                ;                   ;         ;
+;      - inst11       ; 0                 ; 6       ;
+;      - inst9        ; 0                 ; 6       ;
 ; A7                  ;                   ;         ;
 ;      - inst11       ; 0                 ; 6       ;
 ;      - inst9        ; 0                 ; 6       ;
 ; A6                  ;                   ;         ;
-;      - inst11       ; 0                 ; 6       ;
-;      - inst9        ; 0                 ; 6       ;
-; /CS2                ;                   ;         ;
 ;      - inst11       ; 0                 ; 6       ;
 ;      - inst9        ; 0                 ; 6       ;
 ; /RE                 ;                   ;         ;
@@ -751,9 +751,9 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; CLK                ; Pass      ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ;
 ; TRIEN              ; Pass      ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ;
 ; /WE                ; Pass      ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ;
+; /CS2               ; Pass      ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ;
 ; A7                 ; Pass      ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ;
 ; A6                 ; Pass      ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ;
-; /CS2               ; Pass      ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ;
 ; /RE                ; Pass      ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ;
 +--------------------+-----------+--------------+-----------+--------------+--------------+-----------+-----------+--------------+-----------+-----------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+-----------+--------------+--------------+
 
@@ -847,23 +847,23 @@ Info (170199): The Fitter performed an Auto Fit compilation.  Optimizations were
     Info (170201): Optimizations that may affect the design's routability were skipped
     Info (170200): Optimizations that may affect the design's timing were skipped
 Info (170194): Fitter routing operations ending: elapsed time is 00:00:00
-Info (11888): Total time spent on timing analysis during the Fitter is 0.04 seconds.
+Info (11888): Total time spent on timing analysis during the Fitter is 0.09 seconds.
 Info (334003): Started post-fitting delay annotation
 Info (334004): Delay annotation completed successfully
 Info (334003): Started post-fitting delay annotation
 Info (334004): Delay annotation completed successfully
-Info (11218): Fitter post-fit operations ending: elapsed time is 00:00:01
-Info (144001): Generated suppressed messages file C:/Users/steve/git repos/school/EEL4744/lab 4/output_files/lab_4.fit.smsg
+Info (11218): Fitter post-fit operations ending: elapsed time is 00:00:00
+Info (144001): Generated suppressed messages file C:/Users/steve/git repos/school/EEL4744/lab 4/lab_4_quartus/output_files/lab_4.fit.smsg
 Info: Quartus Prime Fitter was successful. 0 errors, 6 warnings
     Info: Peak virtual memory: 5799 megabytes
-    Info: Processing ended: Fri Jun 16 16:58:39 2023
-    Info: Elapsed time: 00:00:03
-    Info: Total CPU time (on all processors): 00:00:02
+    Info: Processing ended: Sat Jun 17 15:09:00 2023
+    Info: Elapsed time: 00:00:07
+    Info: Total CPU time (on all processors): 00:00:01
 
 
 +----------------------------+
 ; Fitter Suppressed Messages ;
 +----------------------------+
-The suppressed messages can be found in C:/Users/steve/git repos/school/EEL4744/lab 4/output_files/lab_4.fit.smsg.
+The suppressed messages can be found in C:/Users/steve/git repos/school/EEL4744/lab 4/lab_4_quartus/output_files/lab_4.fit.smsg.
 
 

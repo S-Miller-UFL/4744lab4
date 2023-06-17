@@ -7,7 +7,7 @@
   <DIR>C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avrassembler\Include</DIR>
   <DIR></DIR>
  </INCLUDE_PATH>
- <SOURCE_FILE>C:\Users\steve\git repos\school\EEL4744\lab 4\lab 4\lab 4\EBI TEST.asm</SOURCE_FILE>
+ <SOURCE_FILE>C:\Users\steve\git repos\school\EEL4744\lab 4\lab 4\lab 4\lab4_3b.asm</SOURCE_FILE>
  <INCLUDED_FILES>
   <FILE>C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\XMEGAA_DFP\1.3.146\avrasm\inc\ATxmega128A1Udef.inc</FILE>
   <FILE>C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\XMEGAA_DFP\1.3.146\avrasm\inc\ATxmega128a1udef.inc</FILE>
@@ -23,9 +23,9 @@
   <FILE>lab 4.lss</FILE>
  </OUTPUT_FILES>
  <LABELS>
-  <MAIN><FILE>C:\Users\steve\git repos\school\EEL4744\lab 4\lab 4\lab 4\EBI TEST.asm</FILE><LINE>29</LINE></MAIN>
-  <EBI_INIT><FILE>C:\Users\steve\git repos\school\EEL4744\lab 4\lab 4\lab 4\EBI TEST.asm</FILE><LINE>68</LINE></EBI_INIT>
-  <LOOP><FILE>C:\Users\steve\git repos\school\EEL4744\lab 4\lab 4\lab 4\EBI TEST.asm</FILE><LINE>51</LINE></LOOP>
-  <END><FILE>C:\Users\steve\git repos\school\EEL4744\lab 4\lab 4\lab 4\EBI TEST.asm</FILE><LINE>57</LINE></END>
+  <MAIN><FILE>C:\Users\steve\git repos\school\EEL4744\lab 4\lab 4\lab 4\lab4_3b.asm</FILE><LINE>34</LINE></MAIN>
+  <EBI_INIT><FILE>C:\Users\steve\git repos\school\EEL4744\lab 4\lab 4\lab 4\lab4_3b.asm</FILE><LINE>75</LINE></EBI_INIT>
+  <LOOP><FILE>C:\Users\steve\git repos\school\EEL4744\lab 4\lab 4\lab 4\lab4_3b.asm</FILE><LINE>56</LINE></LOOP>
+  <END><FILE>C:\Users\steve\git repos\school\EEL4744\lab 4\lab 4\lab 4\lab4_3b.asm</FILE><LINE>64</LINE></END>
  </LABELS>
 </ASSEMBLER_INFO>
