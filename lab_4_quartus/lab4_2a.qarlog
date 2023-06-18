@@ -1,0 +1,17 @@
+Quartus Prime Archive log --	C:/Users/steve/git repos/school/EEL4744/lab 4/lab_4_quartus/lab4_2a.qarlog
+
+Archive:	C:/Users/steve/git repos/school/EEL4744/lab 4/lab_4_quartus/lab4_2a.qar
+Date:		Sun Jun 18 14:30:45 2023
+Quartus Prime		19.1.0 Build 670 09/22/2019 SJ Lite Edition
+
+	=========== Files Selected: ===========
+C:/Users/steve/git repos/school/EEL4744/lab 4/lab_4_quartus/Waveform.vwf
+C:/Users/steve/git repos/school/EEL4744/lab 4/lab_4_quartus/lab_4.bdf
+C:/Users/steve/git repos/school/EEL4744/lab 4/lab_4_quartus/lab_4.qpf
+C:/Users/steve/git repos/school/EEL4744/lab 4/lab_4_quartus/lab_4.qsf
+C:/Users/steve/git repos/school/EEL4744/lab 4/lab_4_quartus/output_files/Waveform.vwf
+c:/intelfpga_lite/19.1/quartus/bin64/assignment_defaults.qdf
+	======= Total: 6 files to archive =======
+
+	================ Status: ===============
+All files archived successfully.
